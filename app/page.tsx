@@ -5,10 +5,33 @@ import ButtonHover from "@/components/custom/ButtonWithArrow";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ServiceCarousel } from "@/components/custom/ServiceCarousel";
+import { TestimonialCarousel } from "@/components/custom/TestimonialCarousel";
+import CustomTitle from "@/components/custom/CustomTitle";
+
+const ServicesTitle = [
+  {
+    title: "Teeth Whitening",
+    link: "teeth-whitetning",
+  },
+  {
+    title: "Dental Crowns",
+    link: "dental-crowns",
+  },
+  {
+    title: "Porcelain Veeners",
+    link: "porcelain-veeners",
+  },
+  {
+    title: "Feelings And Bonding",
+    link: "feelings-and-bonding",
+  },
+  {
+    title: "Dental Implants",
+    link: "dental-implants",
+  },
+];
 
 export default function Home() {
-  const jsonData = loadJsonData();
-
   return (
     <>
       <main className="relative mt-[-90px] h-[87vh] w-full">
@@ -44,7 +67,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative flex w-[60%] items-end justify-end">
+          <div className="relative z-0 flex w-[60%] items-end justify-end">
             <Image
               src={
                 "https://atelierdental.com.au/wp-content/uploads/2024/04/062A9944.jpg"
@@ -66,19 +89,16 @@ export default function Home() {
           </div>
         </div>
       </main>
-
       {/* second section */}
       <div className="w-full space-y-10 px-[10%] py-24">
         <div className="flex w-full items-center">
           <div className="w-[5%] border-t border-[#393939]"></div>
-          <span className="mx-4 text-2xl text-[#393939]">Dental Service</span>
+          <CustomTitle title="Dental Services" className="mx-4" />
           <div className="flex-grow border-t border-[#393939]"></div>
         </div>
         <ServiceCarousel />
       </div>
-
       {/* third section */}
-
       <div className="space-y-24 bg-[#EEF0EC] px-[10%] py-24">
         <div className="flex justify-between">
           <div className="h-[450px] w-[40%]">
@@ -93,10 +113,9 @@ export default function Home() {
             />
           </div>
           <div className="flex w-[50%] flex-col justify-center space-y-5">
-            <h3 className="text-2xl text-[#393939]">About Atelier</h3>
+            <CustomTitle title="About Atelier" />
             <Link href="#" className="text-[#884434] hover:scale-105">
               <span className="border-b-[1px] border-[#884434] hover:scale-105">
-                {" "}
                 Learn More
               </span>
             </Link>
@@ -124,7 +143,7 @@ export default function Home() {
         </div>
         <div className="flex justify-between">
           <div className="flex w-[50%] flex-col justify-center space-y-5">
-            <h3 className="text-2xl text-[#393939]">Our Mission</h3>
+            <CustomTitle title="Our Mission" />
 
             <p className="flex w-[80%] flex-col space-y-3 whitespace-pre-line text-[#2C3F33]">
               <span>
@@ -161,10 +180,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       {/* fourth section */}
-
-      <div className="px-[10%] py-[15%]">
+      <div className="flex h-[100vh] flex-col items-center justify-center px-[10%] pt-20">
         <div className="flex flex-col items-center justify-center space-y-5 bg-[#2C3F33] pb-10">
           <div className="flex space-x-10">
             <div className="">
@@ -203,9 +220,10 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center space-y-5 text-white">
-            <h1 className="text-3xl tracking-tighter">
-              Transform Your Smile With Cosmetic Dentistry
-            </h1>
+            <CustomTitle
+              title="Transform Your Smile With Cosmetic Dentistry"
+              className="!text-white"
+            />
             <p className="w-[40%] text-center">
               Discover our selection of natural-looking cosmetic solutions
               designed just for you. Your journey to the smile you’ve always
@@ -213,36 +231,15 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-5">
-              <Button
-                className="w-[30%] rounded-none border-[1px] border-white bg-transparent px-4 py-3"
-                variant="outline"
-              >
-                Teeth Whitening
-              </Button>
-              <Button
-                className="w-[30%] rounded-none border-[1px] border-white bg-transparent px-4 py-3"
-                variant="outline"
-              >
-                Dental Crowns
-              </Button>
-              <Button
-                className="w-[30%] rounded-none border-[1px] border-white bg-transparent px-4 py-3"
-                variant="outline"
-              >
-                Porcelain Veeners
-              </Button>
-              <Button
-                className="w-[30%] rounded-none border-[1px] border-white bg-transparent px-4 py-3"
-                variant="outline"
-              >
-                Feelings And Bonding
-              </Button>
-              <Button
-                className="w-[30%] rounded-none border-[1px] border-white bg-transparent px-4 py-3"
-                variant="outline"
-              >
-                Dental Implants
-              </Button>
+              {ServicesTitle.map((service, id) => (
+                <Link
+                  href={`${service.link}`}
+                  key={id}
+                  className="w-[30%] rounded-none border-[1px] border-white bg-transparent px-4 py-3 text-center text-white hover:bg-white hover:text-[#393939]"
+                >
+                  {service.title}
+                </Link>
+              ))}
             </div>
             <ButtonHover className="text-md transform rounded-full border-[1px] border-solid border-[#2C3F33] bg-[#a8b3a0] py-[10px] pl-[25px] pr-[30px] text-[#2C3F33] transition-transform hover:scale-105 hover:border-[#2C3F33] hover:text-white">
               Schedule An Appointment
@@ -256,10 +253,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       {/* fifth section */}
-
-      <div className="relative mt-20 flex items-center justify-center px-[10%]">
+      <div className="relative flex h-[80vh] items-center justify-center px-[10%]">
         <div className="absolute left-0 h-[700px] w-[800px] px-[7%]">
           <Image
             src={
@@ -272,9 +267,7 @@ export default function Home() {
           />
         </div>
         <div className="z-20 w-[80%] space-y-5 bg-[#DCE1D9] p-16">
-          <h1 className="text-3xl tracking-tighter">
-            Interest-free Dental Payment Plans
-          </h1>
+          <CustomTitle title="Interest-free Dental Payment Plans" />
           <p className="">
             At Atelier Dental, we are committed to ensuring that your dental
             health is both accessible and affordable. Our interest-free payment
@@ -293,6 +286,45 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </div>
+      {/* sixth section */}
+
+      <div className="relative mt-32 flex h-[60vh] items-center justify-center">
+        <Image
+          src={
+            "https://atelierdental.com.au/wp-content/uploads/2023/07/Atelia-cta.jpg"
+          }
+          alt="sixth_image"
+          width={500}
+          height={500}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 flex h-full w-full items-center justify-center">
+          <div className="flex w-[60%] flex-row space-x-5 rounded-lg bg-white p-12">
+            <div className="w-[35%]">
+              <CustomTitle title="Unlock Your Perfect Smile Today!" />
+            </div>
+            <div className="w-[65%]">
+              <p>
+                Embrace the joy that comes with a healthy smile! Secure your
+                appointment today and let us create a personalised dental care
+                plan tailored to your needs.
+              </p>
+              <ButtonHover className="text-md mt-6 transform rounded-full bg-[#2C3F33] py-[10px] pl-[25px] pr-[35px] text-center text-white transition-transform hover:scale-105">
+                Book an Appointment
+              </ButtonHover>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center space-y-10 bg-[#F6F7F5] px-[10%] py-24">
+        <h1 className="text-2xl font-bold">What Our Patients Say</h1>
+        <p className="w-[60%] text-center">
+          From the moment you walk through the door, and all the way through to
+          aftercare, we aim to deliver a personalised and exceptional
+          experience, helping you get the smile you deserve.
+        </p>
+        <TestimonialCarousel />
       </div>
     </>
   );
